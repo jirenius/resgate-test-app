@@ -6,13 +6,13 @@
   "dependencies": {
     "express": "^4.16.2",
     "modapp": "^2.1.2",
-    "modapp-base-component": "^1.0.0",
-    "modapp-l10n": "^1.0.1",
-    "modapp-resource": "^1.0.1",
-    "modapp-resource-component": "^1.0.0",
+    "modapp-base-component": "^1.0.2",
+    "modapp-l10n": "^1.0.2",
+    "modapp-resource": "^1.0.2",
+    "modapp-resource-component": "^1.0.1",
     "modapp-utils": "^1.0.1",
     "nats": "^0.7.29",
-    "resclient": "^1.0.1"
+    "resclient": "^1.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

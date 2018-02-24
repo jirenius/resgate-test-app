@@ -1,0 +1,15 @@
+.module-form input, button {
+	display: block;
+	margin-top: 10px;
+}
+
+.module-form small {
+	display: block;
+	color: rgb(126, 61, 61);
+	height: 0px;
+	transition: height 0.2s ease-out;
+}
+
+.module-form small.show {
+	height: 16px;
+}
