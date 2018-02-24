@@ -8,7 +8,7 @@ var includePaths = [
 	fs.realpathSync(__dirname + '/src')
 ];
 
-var alias = null;
+var alias = {};
 var aliasPath = path.join(__dirname, 'webpack.alias.js');
 if (fs.existsSync(aliasPath)) {
 	alias = require(aliasPath);
