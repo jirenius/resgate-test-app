@@ -1,0 +1,9 @@
+/node_modules
+/coverage
+/webpack.alias.js
+/node_modules
+/yarn.lock
+/package-lock.json
+
+# Editor specifics
+.vscode/*

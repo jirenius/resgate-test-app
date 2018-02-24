@@ -1,0 +1,58 @@
+
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 100;
+	background: #f0f0f0;
+	font-family: helvetica;
+}
+
+.module-layout {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.module-layout--header {
+	background: #04040a;
+	color: #f0f0f0;
+	overflow: hidden;
+	padding: 0 32px;
+	flex: 0 0 auto;
+}
+
+.module-layout--main {
+	padding: 16px 32px;
+	position: relative;
+	flex: 1 1 0px;
+	display: flex;
+}
+
+.module-layout--tabs {
+	overflow: hidden;
+}
+
+.module-layout--tabs > li {
+	display: inline-block;
+}
+
+.module-layout--tabs > li > span {
+	display: inline-block;
+	background-color: inherit;
+	cursor: pointer;
+	padding: 14px 24px;
+	transition: 0.3s;
+	min-width: 96px;
+	text-align: center;
+}
+
+.module-layout--tabs > li > span:hover {
+	background-color: grey;
+}
+
+.module-layout--tabs > li > span.active {
+	background: #f0f0f0;
+	color: #a06420
+}

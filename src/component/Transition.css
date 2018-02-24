@@ -1,0 +1,11 @@
+.comp-transition {
+	flex: 1 1 0px;
+	position: relative;
+}
+
+.comp-transition  .comp-transition-cont {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: auto;
+}

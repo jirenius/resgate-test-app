@@ -1,0 +1,112 @@
+.comp-waitoverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 501;
+	background: inherit;
+	opacity: 0.50;
+	filter: Alpha(Opacity=50);
+}
+
+.comp-waitoverlay-loader {
+	position:absolute;
+	z-index: 502;
+	top: 50%;
+	left: 50%;
+	opacity: 1;
+	filter: Alpha(Opacity=100);
+}
+
+.comp-waitoverlay-loader > div {
+	position: absolute;
+	display: block;
+	-moz-animation: comp-waitoverlay-anim 1.5s linear infinite;
+	-webkit-animation: comp-waitoverlay-anim 1.5s linear infinite;
+	animation: comp-waitoverlay-anim 1.5s linear infinite;
+}
+
+.comp-waitoverlay-loader > div.small {
+	width: 30px;
+	height: 30px;
+	margin: -15px 0 0 -15px;
+}
+
+.comp-waitoverlay-loader > div.small > div {
+	width: 24px;
+	height: 24px;
+	top: 3px;
+	left: 3px;
+	border-radius: 12px;
+	box-shadow: 0 1px 0 0 #303030, 0 -1px 0 0 #303030 inset;
+}
+
+.comp-waitoverlay-loader > div.medium {
+	width: 120px;
+	height: 120px;
+	margin: -60px 0 0 -60px;
+}
+
+.comp-waitoverlay-loader > div.medium > div {
+	width: 96px;
+	height: 96px;
+	top: 12px;
+	left: 12px;
+	border-radius: 48px;
+	box-shadow: 0 4px 0 0 #303030, 0 -4px 0 0 #303030 inset;
+}
+
+.comp-waitoverlay-loader > div.large {
+	width: 180px;
+	height: 180px;
+	margin: -90px 0 0 -90px;
+}
+
+.comp-waitoverlay-loader > div.large > div {
+	width: 144px;
+	height: 144px;
+	top: 18px;
+	left: 18px;
+	border-radius: 72px;
+	box-shadow: 0 6px 0 0 #303030, 0 -6px 0 0 #303030 inset;
+}
+
+@-moz-keyframes comp-waitoverlay-anim {
+	0% {
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes comp-waitoverlay-anim {
+	0% {
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes comp-waitoverlay-anim {
+	0% {
+		-moz-transform: rotate(0deg);
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-moz-transform: rotate(360deg);
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}

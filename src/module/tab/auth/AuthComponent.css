@@ -1,0 +1,15 @@
+.module-auth input, button {
+	display: block;
+	margin-top: 10px;
+}
+
+.module-auth small {
+	display: block;
+	color: rgb(126, 61, 61);
+	height: 0px;
+	transition: height 0.2s ease-out;
+}
+
+.module-auth small.show {
+	height: 16px;
+}
