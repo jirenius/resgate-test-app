@@ -17,7 +17,7 @@ class ClickField {
 
 		this.module.layout.addTab({
 			id: 'clickField',
-			name: l10n.l('module.clickField.clickField', `Click field`),
+			name: l10n.l('clickField.clickField', `Click field`),
 			sortOrder: 40,
 			componentFactory: () => this.module.api.getResource('clickService.clickField')
 				.then(model => new ClickFieldComponent(model))

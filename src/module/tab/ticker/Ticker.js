@@ -20,12 +20,12 @@ class Ticker {
 
 		this.module.layout.addTab({
 			id: 'ticker',
-			name: l10n.l('module.ticker.ticker', `Ticker`),
+			name: l10n.l('ticker.ticker', `Ticker`),
 			sortOrder: 20,
 			componentFactory: () => this.module.api.getResource('tickerService.ticker').then(model => new Elem(n =>
 				n.elem('div', { className: 'model-ticker' }, [
-					n.component(new Txt(l10n.l('module.ticker.ticker', `Ticker`), { tagName: 'h3' })),
-					n.component(new Txt(l10n.l('module.ticker.tickerdesc', `Below counter is pushed by model change events from the ticker service.`), { tagName: 'p' })),
+					n.component(new Txt(l10n.l('ticker.ticker', `Ticker`), { tagName: 'h3' })),
+					n.component(new Txt(l10n.l('ticker.tickerdesc', `Below counter is pushed by model change events from the ticker service.`), { tagName: 'p' })),
 					n.elem('span', [
 						n.text('Count: '),
 						n.component(new ModelTxt(model, m => String(m.count)))
@@ -37,7 +37,7 @@ class Ticker {
 						, { tagName: 'div' }
 					)),
 					n.component(this.module.auth.getUser() && this.module.auth.getUser().role === 'admin'
-						? new Button(l10n.l('module.ticker.toggleTickerAccess', `Toggle ticker access`), () => this._toggleTickerAccess(model))
+						? new Button(l10n.l('ticker.toggleTickerAccess', `Toggle ticker access`), () => this._toggleTickerAccess(model))
 						: null
 					)
 				])

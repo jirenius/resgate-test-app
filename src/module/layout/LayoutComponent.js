@@ -118,7 +118,7 @@ class LayoutComponent {
 		console.log("Broken tab: ", err);
 		return new Elem(n =>
 			n.elem('div', { className: 'module-layout--broken-tab' }, [
-				n.component(new Txt(l10n.l('module.layout.info', `An error occurred when loading the tab`), { tagName: 'h3' })),
+				n.component(new Txt(l10n.l('layout.info', `An error occurred when loading the tab`), { tagName: 'h3' })),
 				n.component(new Txt(l10n.l(err.code, err.message, err.data), { tagName: 'pre' }))
 			])
 		);

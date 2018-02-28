@@ -1,5 +1,8 @@
+import Model from 'modapp-resource/Model';
 import AuthComponent from './AuthComponent';
 import l10n from 'modapp-l10n';
+
+const EXPIRE_DURATION = 2 * 60 * 1000; // Token expires after 2 min. Should be renewed after half.
 
 /**
  * Auth adds the click field tab to the layout module
@@ -12,26 +15,35 @@ class Auth {
 
 		// Bind callbacks
 		this._onConnect = this._onConnect.bind(this);
+		this._onUserChange = this._onUserChange.bind(this);
 
 		this.app.require([ 'layout', 'api' ], this._init.bind(this));
 	}
 
 	_init(module) {
 		this.module = module;
-		this.user = null;
+
+		this.apiUser = null;
+		this.tokenKey = null;
+		// Create a ordinary Model that is kept in sync with the api user.
+		// This is to avoid having a promise to the user.
+		this.user = new Model(this.app.eventBus, 'auth.user', {
+			definition: {
+				id: { type: '?number' },
+				name: { type: '?string' },
+				role: { type: '?string' },
+				isLoggedIn: { type: 'boolean' }
+			}
+		});
 
 		this.module.api.setOnConnect(this._onConnect);
 
 		this.module.layout.addTab({
 			id: 'auth',
-			name: l10n.l('module.auth.auth', `Authentication`),
+			name: l10n.l('auth.auth', `Authentication`),
 			sortOrder: 50,
 			componentFactory: () => new AuthComponent(this)
 		});
-	}
-
-	isLoggedIn() {
-		return !!this.user;
 	}
 
 	getUser() {
@@ -39,48 +51,88 @@ class Auth {
 	}
 
 	login(username, password) {
+		if (!this.apiUser) {
+			return this.module.api.getResource('authService.user.{cid}').then(apiUser => {
+				this.apiUser = apiUser;
+				this.apiUser.on('change', this._onUserChange);
+
+				return this._authenticate(username, password);
+			});
+		}
+
+		return this._authenticate(username, password);
+	}
+
+	_authenticate(username, password) {
 		return this.module.api.authenticate('authService', 'login', { username, password })
-			.then(user => {
-				this.user = user;
-				return user;
+			.then(result => {
+				console.log("[Auth] Successfully connected");
+				this._setTokenKey(result.tokenKey);
 			})
 			.catch(err => {
-				this.user = null;
-				throw err;
+				console.log("[Auth] Error connecting: ", err);
+				this._setTokenKey(null);
 			});
 	}
 
 	logout() {
-		return this.module.api.authenticate('authService', 'logout')
-			.then(() => {
-				this.user = null;
-			});
+		return this.module.api.authenticate('authService', 'logout');
 	}
 
 	logoutGuests() {
 		return this.module.api.callModel('authService', 'logoutGuests');
 	}
 
+	_onUserChange() {
+		this.user.set({
+			id: this.apiUser.id,
+			name: this.apiUser.name,
+			role: this.apiUser.role,
+			isLoggedIn: !!this.apiUser.id
+		});
+	}
+
 	_onConnect() {
-		if (!this.user) {
+		if (!this.tokenKey) {
 			return;
 		}
 
 		console.log("[Auth] Trying to reconnect");
 
 		// Try to relogin if we have a user (tokenKey)
-		return this.module.api.authenticate('authService', 'relogin', { tokenKey: this.user.tokenKey })
-			.then(user => {
+		return this.module.api.authenticate('authService', 'relogin', { tokenKey: this.tokenKey })
+			.then(result => {
 				console.log("[Auth] Successfully reconnected");
-				this.user = user;
+				this._setTokenKey(result.tokenKey);
 			})
 			.catch(err => {
 				console.log("[Auth] Error reconnecting: ", err);
-				this.user = null;
+				this._setTokenKey(null);
 			});
 	}
 
+	_setTokenKey(tokenKey) {
+		this._clearTimeout();
+
+		this.tokenKey = tokenKey;
+		if (tokenKey) {
+			this.timeoutId = setTimeout(this._onConnect, EXPIRE_DURATION / 2);
+		}
+	}
+
+	_clearTimeout() {
+		if (this.timeoutId) {
+			clearTimeout(this.timeoutId);
+			this.timeoutId = null;
+		}
+	}
+
 	dispose() {
+		if (this.apiUser) {
+			this.apiUser.off('change', this._onUserChange);
+		}
+		this._clearTimeout();
+		this.module.api.setOnConnect(null);
 		this.module.layout.removeTab('auth');
 	}
 }

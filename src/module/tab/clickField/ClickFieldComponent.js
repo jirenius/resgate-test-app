@@ -19,7 +19,7 @@ class ClickFieldComponent {
 	render(el) {
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-clickField' }, [
-				n.component(new Txt(l10n.l('module.clickField.clickFielddesc', `See where others click. And if you are logged in, click anywhere to send an event yourself.`), { tagName: 'p' })),
+				n.component(new Txt(l10n.l('clickField.clickFielddesc', `See where others click. And if you are logged in, click anywhere to send an event yourself.`), { tagName: 'p' })),
 				n.elem('span', [
 					n.text('Click count: '),
 					n.component(new ModelTxt(this.clickField, m => String(m.clickCount)))

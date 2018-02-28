@@ -19,12 +19,12 @@ class Static {
 
 		this.module.layout.addTab({
 			id: 'static',
-			name: l10n.l('module.static.static', `Static`),
+			name: l10n.l('static.static', `Static`),
 			sortOrder: 10,
 			componentFactory: () => new Elem(n =>
 				n.elem('div', { className: 'module-static--tab' }, [
-					n.component(new Txt(l10n.l('module.static.info', `Information`), { tagName: 'h3' })),
-					n.component(new Txt(l10n.l('module.static.infodesc', `This tab only contains static text`), { tagName: 'p' }))
+					n.component(new Txt(l10n.l('static.info', `Information`), { tagName: 'h3' })),
+					n.component(new Txt(l10n.l('static.infodesc', `This tab only contains static text`), { tagName: 'p' }))
 				])
 			)
 		});

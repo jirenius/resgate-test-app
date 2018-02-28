@@ -31,7 +31,7 @@ class FormComponent {
 					new Input({
 						value: this.modifyModel.input,
 						onChange: value => this.modifyModel.set({ input: value }),
-						placeholder: l10n.l('module.form.typeSomething', `Type something`)
+						placeholder: l10n.l('form.typeSomething', `Type something`)
 					}),
 					(m, c) => {
 						c.setValue(m.input);

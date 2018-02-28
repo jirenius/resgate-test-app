@@ -20,7 +20,7 @@ class Notes {
 
 		this.module.layout.addTab({
 			id: 'notes',
-			name: l10n.l('module.notes.notes', `Notes`),
+			name: l10n.l('notes.notes', `Notes`),
 			sortOrder: 30,
 			componentFactory: () => this.module.api.getResource('notesService.notes?start=0&limit=5').then(notes => {
 				return new CollectionList(notes, model => new Elem(n =>
