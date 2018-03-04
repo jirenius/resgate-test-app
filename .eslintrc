@@ -62,6 +62,7 @@
 		}],
 		"block-spacing": ["error"],
 		"eol-last": ["error", "always"],
-		"no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }]
+		"no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+		"key-spacing": ["error"]
 	}
 }
