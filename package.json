@@ -12,7 +12,7 @@
     "modapp-resource-component": "^1.0.1",
     "modapp-utils": "^1.0.1",
     "nats": "^0.7.29",
-    "resclient": "^1.0.4"
+    "resclient": "^1.0.5"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
