@@ -44,7 +44,7 @@ nats.subscribe('call.formService.form.set', (request, replyTo, subject) => {
 		for (let key in change) {
 			change[key] = form[key];
 		}
-		nats.publish('event.formService.form.change', JSON.stringify({ data: change }));
+		nats.publish('event.formService.form.change', JSON.stringify(change));
 	}
 	nats.publish(replyTo, JSON.stringify({ result: null }));
 });

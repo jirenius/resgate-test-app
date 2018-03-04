@@ -14,10 +14,11 @@ class Layout {
 
 	_init(module) {
 		this.module = module;
-		this.tabs = new Collection(this.app.eventBus, 'module.layout.tabs', {
+		this.tabs = new Collection({
+			namespace: 'layout.tabs',
 			compare: sortOrderCompare
 		});
-		this.component = new LayoutComponent(this.app, this.module, this.tabs);
+		this.component = new LayoutComponent(this.module, this.tabs);
 
 		this.app.setComponent(this.component);
 	}

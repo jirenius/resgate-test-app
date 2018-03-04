@@ -42,8 +42,8 @@ nats.subscribe('call.clickService.clickField.click', (rawRequest, replyTo, subje
 	clickField.clickCount++;
 
 	let params = request.params;
-	nats.publish('event.clickService.clickField.click', JSON.stringify({ data: { xpos: params.xpos, ypos: params.ypos }}));
-	nats.publish('event.clickService.clickField.change', JSON.stringify({ data: { clickCount: clickField.clickCount }}));
+	nats.publish('event.clickService.clickField.click', JSON.stringify({ xpos: params.xpos, ypos: params.ypos }));
+	nats.publish('event.clickService.clickField.change', JSON.stringify({ clickCount: clickField.clickCount }));
 	nats.publish(replyTo, JSON.stringify({ result: null }));
 });
 

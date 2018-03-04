@@ -16,7 +16,7 @@ class Api extends ResClient {
 				default: `/ws`
 			}
 		});
-		super(app.eventBus, opt.hostUrl, namespace);
+		super(opt.hostUrl, { namespace, eventBus: app.eventBus });
 		this.app = app;
 
 		this._init();

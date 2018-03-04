@@ -37,7 +37,7 @@ nats.subscribe('call.tickerService.ticker.set', (request, replyTo, subject) => {
 
 	if (Object.keys(change).length) {
 		Object.assign(ticker, change);
-		nats.publish('event.tickerService.ticker.change', JSON.stringify({ data: change }));
+		nats.publish('event.tickerService.ticker.change', JSON.stringify(change));
 	}
 	nats.publish(replyTo, JSON.stringify({ result: null }));
 });
@@ -47,7 +47,7 @@ nats.publish('system.reset', JSON.stringify({ resources: [ 'tickerService.>' ] }
 let count = function() {
 	setTimeout(() => {
 		ticker.count++;
-		nats.publish('event.tickerService.ticker.change', JSON.stringify({ data: { count: ticker.count }}));
+		nats.publish('event.tickerService.ticker.change', JSON.stringify({ count: ticker.count }));
 		count();
 	}, 1000);
 };

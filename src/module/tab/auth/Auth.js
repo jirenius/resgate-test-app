@@ -27,7 +27,8 @@ class Auth {
 		this.tokenKey = null;
 		// Create a ordinary Model that is kept in sync with the api user.
 		// This is to avoid having a promise to the user.
-		this.user = new Model(this.app.eventBus, 'auth.user', {
+		this.user = new Model({
+			namespace: 'auth.user',
 			definition: {
 				id: { type: '?number' },
 				name: { type: '?string' },

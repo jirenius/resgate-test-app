@@ -73,7 +73,7 @@ class QueryCollection {
 		this.map[resourceId] = model;
 
 		let subject = this._createQueryInbox('add', resourceId, idx);
-		this.nats.publish('event.' + this.resourceName + '.add', JSON.stringify({ data: { resourceId, idx }}));
+		this.nats.publish('event.' + this.resourceName + '.add', JSON.stringify({ rid: resourceId, idx }));
 		this.nats.publish('event.' + this.resourceName + '.query', JSON.stringify({ subject }));
 	}
 
@@ -90,7 +90,7 @@ class QueryCollection {
 		delete this.map[resourceId];
 
 		let subject = this._createQueryInbox('remove', resourceId, idx);
-		this.nats.publish('event.' + this.resourceName + '.remove', JSON.stringify({ data: { resourceId, idx }}));
+		this.nats.publish('event.' + this.resourceName + '.remove', JSON.stringify({ rid: resourceId, idx }));
 		this.nats.publish('event.' + this.resourceName + '.query', JSON.stringify({ subject }));
 		return model;
 	}
@@ -163,7 +163,7 @@ class QueryCollection {
 				events = [{
 					event: event.event,
 					data: {
-						resourceId: event.resourceId,
+						rid: event.resourceId,
 						idx: event.idx - start
 					}
 				}];
@@ -171,7 +171,7 @@ class QueryCollection {
 				events = [{
 					event: event.event,
 					data: {
-						resourceId: this._getPastResourceIdAt(idx, start - offset),
+						rid: this._getPastResourceIdAt(idx, start - offset),
 						idx: 0
 					}
 				}];
@@ -183,7 +183,7 @@ class QueryCollection {
 					events.push({
 						event: event.event === 'add' ? 'remove' : 'add',
 						data: {
-							resourceId,
+							rid: resourceId,
 							idx: q.limit - 1 + offset
 						}
 					});

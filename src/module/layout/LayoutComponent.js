@@ -11,12 +11,11 @@ import './Layout.css';
 
 class LayoutComponent {
 
-	constructor(app, module, tabs) {
-		this.app = app;
+	constructor(module, tabs) {
 		this.module = module;
 		this.tabs = tabs;
 
-		this.state = new Model(this.app.eventBus, 'module.layout.state');
+		this.state = new Model({ namespace: 'layout.state' });
 	}
 
 	render(el) {
