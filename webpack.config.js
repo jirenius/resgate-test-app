@@ -8,12 +8,18 @@ var includePaths = [
 	fs.realpathSync(__dirname + '/src')
 ];
 
-var alias = {};
+var moduleConfigPath = path.join(__dirname, 'src/module.config.local.js');
+if (!fs.existsSync(moduleConfigPath)) {
+	moduleConfigPath = path.join(__dirname, 'src/module.config.js');
+}
+var alias = {
+	'module.config': moduleConfigPath
+};
 var aliasPath = path.join(__dirname, 'webpack.alias.js');
 if (fs.existsSync(aliasPath)) {
-	alias = require(aliasPath);
-	for (var mod in alias) {
-		alias[mod] = path.resolve(__dirname, alias[mod]);
+	let aliasFile = require(aliasPath);
+	for (var mod in aliasFile) {
+		alias[mod] = path.resolve(__dirname, aliasFile[mod]);
 	}
 }
 

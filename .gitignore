@@ -5,5 +5,7 @@
 /yarn.lock
 /package-lock.json
 
+module.config.local.js
+
 # Editor specifics
 .vscode/*
