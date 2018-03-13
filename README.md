@@ -1,7 +1,7 @@
 # Resgate test application
 RES protocol test application used to test and develop resgate.
 
-While the application is not created for the purpose of learning, it can still be used as a reference when creating a new application using a RES API.
+While the application is not created for the purpose of learning, it can still be used as reference when creating a new application using a RES API.
 
 The application consist of a node.js server which will:
 * serve a webclient
@@ -25,7 +25,7 @@ npm install
 npm run start
 ```
 
-Open your favourite webapp and go to:
+Open your favourite browser and go to:
 
 ```
 http://localhost:8000/
