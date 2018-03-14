@@ -114,7 +114,6 @@ class LayoutComponent {
 	}
 
 	_brokenTab(err) {
-		console.log("Broken tab: ", err);
 		return new Elem(n =>
 			n.elem('div', { className: 'module-layout--broken-tab' }, [
 				n.component(new Txt(l10n.l('layout.info', `An error occurred when loading the tab`), { tagName: 'h3' })),
@@ -124,7 +123,6 @@ class LayoutComponent {
 	}
 
 	_onTabClick(tab, i) {
-		console.log("TAB CLICKED: ", tab.id);
 		this.setTab(tab.id);
 	}
 }

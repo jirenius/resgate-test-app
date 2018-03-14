@@ -1,4 +1,4 @@
-import Txt from 'modapp-base-component/Txt';
+import Html from 'modapp-base-component/Html';
 import Elem from 'modapp-base-component/Elem';
 import ModelTxt from 'modapp-resource-component/ModelTxt';
 import l10n from 'modapp-l10n';
@@ -19,7 +19,8 @@ class ClickFieldComponent {
 	render(el) {
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-clickField' }, [
-				n.component(new Txt(l10n.l('clickField.clickFielddesc', `See where others click. And if you are logged in, click anywhere to send an event yourself.`), { tagName: 'p' })),
+				n.component(new Html(l10n.l('clickField.desc', `<p>See where others click. And if you are logged in, click anywhere to send an event yourself.</p><p>Used for testing custom events, call access, and <em>system.reset</em> on the counter.</p>`))),
+				n.elem('hr'),
 				n.elem('span', [
 					n.text('Click count: '),
 					n.component(new ModelTxt(this.clickField, m => String(m.clickCount)))

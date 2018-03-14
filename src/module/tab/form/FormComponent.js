@@ -1,4 +1,5 @@
 import Txt from 'modapp-base-component/Txt';
+import Html from 'modapp-base-component/Html';
 import Elem from 'modapp-base-component/Elem';
 import Input from 'component/Input';
 import Button from 'modapp-base-component/Button';
@@ -24,7 +25,8 @@ class FormComponent {
 	render(el) {
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-form' }, [
-				n.component(new Txt(l10n.l('form.editInstruction', `Edit the form as you see fit, and click submit when ready. Other peoples submits will change the form unless you have made changes to it.`), { tagName: 'p' })),
+				n.component(new Html(l10n.l('form.editInstruction', `<p>Edit the form as you see fit, and click submit to update the remote service model with your local modifications.</p><p>All modifactions are stored in a wrapper model, <em>ModifyModel</em>, which keeps track of any differences between the service model and any local edits. If the remote model is changed by another client, these changes will show directly unless you've started to edit the same field.</p><p>Used for testing calling the <em>set</em> method, and the usage of <em>ModifyModel</em>.</p>`), { tagName: 'p' })),
+				n.elem('hr'),
 				n.component('error', new Txt('', { tagName: 'small' })),
 				n.component(new ModelComponent(
 					this.modifyModel,
