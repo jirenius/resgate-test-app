@@ -27,9 +27,9 @@ class FormComponent {
 
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-form' }, [
-				n.component(new Html(l10n.l('form.editInstruction', `<p>Edit the form as you see fit, and click submit to update the remote service model with your local modifications.</p><p>All modifactions are stored in a wrapper model, <em>ModifyModel</em>, which keeps track of any differences between the service model and any local edits. If the remote model is changed by another client, these changes will show directly unless you've started to edit the same field.</p><p>Used for testing calling the <em>set</em> method, and the usage of <em>ModifyModel</em>.</p>`), { tagName: 'p' })),
+				n.component(new Html(l10n.l('form.editInstruction', `<p>Edit the form as you see fit, and click submit to update the remote service model with your local modifications.</p><p>All modifications are stored in a wrapper model, <em>ModifyModel</em>, which keeps track of any differences between the service model and any local edits. If the remote model is changed by another client, these changes will show directly unless you've started to edit the same field. You can only click <em>Submit</em> when there are modifications to submit.</p><p>Used for testing calling the <em>set</em> method, and the usage of <em>ModifyModel</em> for simultaneous editing.</p>`), { tagName: 'p' })),
 				n.elem('hr'),
-				n.component('error', new Txt('', { tagName: 'small' })),
+				n.component('error', new Txt('', { tagName: 'small', className: 'module-form--error' })),
 				n.component(new ModelComponent(
 					this.modifyModel,
 					new Input({
@@ -41,17 +41,20 @@ class FormComponent {
 						c.setValue(m.input);
 					}
 				)),
-				n.component(new ModelComponent(
-					this.modifyModel,
-					new Checkbox(this.modifyModel.checkbox, {
-						events: { change: (c, ev) => {
-							this.modifyModel.set({ checkbox: c.isChecked() });
-						} }
-					}),
-					(m, c) => {
-						c.setChecked(this.modifyModel.checkbox);
-					}
-				)),
+				n.elem('label', [
+					n.component(new ModelComponent(
+						this.modifyModel,
+						new Checkbox(this.modifyModel.checkbox, {
+							events: { change: (c, ev) => {
+								this.modifyModel.set({ checkbox: c.isChecked() });
+							} }
+						}),
+						(m, c) => {
+							c.setChecked(this.modifyModel.checkbox);
+						}
+					)),
+					n.component(new Txt(l10n.l('form.checkMe', "Check me"), { tagName: 'small' }))
+				]),
 				n.component(new ModelComponent(
 					this.modifyModel,
 					new Button(l10n.l('form.submit', `Submit`), this._clickSubmit),

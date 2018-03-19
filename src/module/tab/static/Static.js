@@ -1,5 +1,5 @@
 import Elem from 'modapp-base-component/Elem';
-import Txt from 'modapp-base-component/Txt';
+import Html from 'modapp-base-component/Html';
 import l10n from 'modapp-l10n';
 
 /**
@@ -23,8 +23,8 @@ class Static {
 			sortOrder: 10,
 			componentFactory: () => new Elem(n =>
 				n.elem('div', { className: 'module-static--tab' }, [
-					n.component(new Txt(l10n.l('static.info', `Information`), { tagName: 'h3' })),
-					n.component(new Txt(l10n.l('static.infodesc', `This tab only contains static text`), { tagName: 'p' }))
+					n.component(new Html(l10n.l('static.description', `<p>This tab only contains static text.</p><p>Since this tab doesn't listen to any resources, it can be used to see how the client unsubscribes to resources previously listened to in other tabs.</p>`), { tagName: 'div' })),
+					n.elem('hr')
 				])
 			)
 		});

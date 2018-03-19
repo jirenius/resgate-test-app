@@ -1,15 +1,19 @@
-.module-form input, button {
+.module-form > input, .module-form > button, .module-form > label {
 	display: block;
 	margin-top: 10px;
 }
 
-.module-form small {
+.module-form label {
+	font-size: 90%;
+}
+
+.module-form--error {
 	display: block;
 	color: rgb(126, 61, 61);
 	height: 0px;
 	transition: height 0.2s ease-out;
 }
 
-.module-form small.show {
+.module-form--error.show {
 	height: 16px;
 }
