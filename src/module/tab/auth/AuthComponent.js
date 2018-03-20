@@ -1,4 +1,5 @@
 import Transition from 'component/Transition';
+import ModelComponent from 'modapp-resource-component/ModelComponent';
 import ModelTxt from 'modapp-resource-component/ModelTxt';
 import Txt from 'modapp-base-component/Txt';
 import Html from 'modapp-base-component/Html';
@@ -77,7 +78,16 @@ class AuthComponent {
 				n.elem('div', { className: 'module-auth' }, [
 					n.component(new ModelTxt(this.user, m => l10n.l('auth.currentlyLoggedIn', `You are currently logged in as {name}.`, m), { tagName: 'p' })),
 					n.component(new Button(l10n.l('auth.logout', `Logout`), this._clickLogout)),
-					n.component(new Button(l10n.l('auth.logoutGuests', `Logout guests`), this._clickLogoutGuests))
+					// Show Logout guestsfor admins
+					n.component(new ModelComponent(this.user, new Transition(), (m, c, change) => {
+						if (!m.role || (change && !change.hasOwnProperty('role'))) {
+							return;
+						}
+						c.fade(m.role === 'admin'
+							? new Button(l10n.l('auth.logoutGuests', `Logout guests`), this._clickLogoutGuests)
+							: null
+						);
+					}))
 				])
 			));
 		} else {
