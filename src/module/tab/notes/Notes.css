@@ -1,0 +1,40 @@
+.module-notes--row {
+	display: flex;
+	width: 100%;
+}
+
+.module-notes--row > div {
+	flex: 1 1 auto;
+}
+
+.module-notes--radios label {
+	margin-right: 12px;
+}
+
+.module-notes--query label {
+	display: block;
+	margin-top: 6px;
+}
+
+.module-notes--query small {
+	margin-right: 10px;
+}
+
+.module-notes--query input {
+	width: 128px;
+}
+
+.module-notes--note {
+	max-width: 175px;
+	padding-top: 8px;
+}
+
+.module-notes--note-container {
+	padding: 8px;
+	background: #fff;
+}
+
+.module-notes--note-id {
+	display: inline-block;
+	width: 40px;
+}
