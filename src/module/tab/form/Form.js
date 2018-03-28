@@ -20,7 +20,7 @@ class Form {
 			id: 'form',
 			name: l10n.l('form.form', `Form`),
 			sortOrder: 20,
-			componentFactory: () => this.module.api.getResource('formService.form').then(model => new FormComponent(this.app, model))
+			componentFactory: () => this.module.api.getResource('formService.form').then(model => new FormComponent(this.module, model))
 		});
 	}
 

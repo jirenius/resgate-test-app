@@ -140,12 +140,11 @@ nats.subscribe('call.authService.logoutGuests', (request, replyTo, subject) => {
 });
 
 // Login auth listener
-nats.subscribe('auth.authService.headerLogin', (request, replyTo, subject) => {
-	console.log("HeaderLogin: ", request);
+nats.subscribe('auth.authService.basicAuth', (request, replyTo, subject) => {
+	let { cid, header } = parseRequest(request);
 
-	let req = JSON.parse(request);
-	if (req && typeof req === 'object' && req.header && typeof req.header === 'object' && req.header.Authorization) {
-		auths = req.header.Authorization;
+	if (header && typeof header === 'object' && header.Authorization) {
+		auths = header.Authorization;
 
 		for (let auth of auths) {
 			if (!auth.lastIndexOf("Basic ", 0) === 0) {
@@ -153,8 +152,6 @@ nats.subscribe('auth.authService.headerLogin', (request, replyTo, subject) => {
 			}
 			auth = auth.substr(6);
 			let str = (new Buffer(auth, 'base64')).toString('utf8');
-
-			console.log("Decoded Authorization: ", str);
 
 			let idx = str.indexOf(':');
 			let p = idx < 0
@@ -166,8 +163,10 @@ nats.subscribe('auth.authService.headerLogin', (request, replyTo, subject) => {
 				continue;
 			}
 
-			console.log("User found!");
-			nats.publish(replyTo, JSON.stringify({ token: { sid: null, userId: user.id, role: user.role }}));
+			// Send a token to the connection
+			nats.publish('conn.' + cid + '.token', JSON.stringify({ token: { sid: null, userId: user.id, role: user.role }}));
+
+			nats.publish(replyTo, JSON.stringify({ result: null }));
 			return;
 		}
 	}
@@ -178,13 +177,11 @@ nats.subscribe('auth.authService.headerLogin', (request, replyTo, subject) => {
 
 let parseRequest = function(request) {
 	let req = JSON.parse(request);
-	return {
+	return Object.assign({ token: null }, req, {
 		params: req && typeof req === 'object' && req.params && typeof req.params === 'object'
 			? req.params
-			: null,
-		token: req.token || null,
-		cid: req.cid
-	};
+			: null
+	});
 };
 
 let validateCredentials = function(params) {

@@ -20,7 +20,7 @@ class ClickField {
 			name: l10n.l('clickField.clickField', `Click field`),
 			sortOrder: 40,
 			componentFactory: () => this.module.api.getResource('clickService.clickField')
-				.then(model => new ClickFieldComponent(model))
+				.then(model => new ClickFieldComponent(model, this.module))
 		});
 	}
 

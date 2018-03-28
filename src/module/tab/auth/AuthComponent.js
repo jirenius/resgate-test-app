@@ -42,6 +42,7 @@ class AuthComponent {
 					This refresh token is bound to the session, and is used for relogin in case of a lost connection. The refresh token has a 2 minute expire time (short for testing purposes), and must be renewed before it expires,
 					or else the session will be disposed and the client logged out. The client application is set to renew the session every minute.
 					While session ID's and refresh tokens are not technically a part of the RES protocol, the pattern is useful to keep the user sessions alive.</p>
+					<p>To access restricted resources with web (HTTP) requests, <em>resgate</em> needs to be configured with setting <em>headerAuth</em> to <code>authService.basicAuth</code> to allow <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic authentication</a>. Implementations for jwt tokens or other authentication methods are also possible.</p> 
 					<p>Used for testing auth calls, setting authorization tokens through token events (login/logout/forced logout), the concept of sessions and refresh tokens, and connection specific resource using the <em>{cid}</em> placeholders.</p>`
 				), { tagName: 'div' })),
 				n.elem('hr'),

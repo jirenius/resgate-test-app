@@ -1,6 +1,5 @@
 import CollectionList from 'component/CollectionList';
 import ModelTxt from 'modapp-resource-component/ModelTxt';
-import Model from 'modapp-resource/Model';
 import Elem from 'modapp-base-component/Elem';
 import Txt from 'modapp-base-component/Txt';
 import Transition from 'modapp-base-component/Transition';
@@ -15,14 +14,10 @@ const STATE_QUERY = 'query';
 
 class NotesComponent {
 
-	constructor(module, data) {
+	constructor(module, model) {
 		this.module = module;
 
-		this.model = new Model({ data: Object.assign({
-			state: 'none',
-			start: '0',
-			limit: '5'
-		}, data) });
+		this.model = model;
 
 		// Bind callbacks
 		this._onChange = this._onChange.bind(this);

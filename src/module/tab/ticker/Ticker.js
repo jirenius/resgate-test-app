@@ -27,6 +27,15 @@ class Ticker {
 			componentFactory: () => this.module.api.getResource('tickerService.ticker').then(model => new Elem(n =>
 				n.elem('div', { className: 'model-ticker' }, [
 					n.component(new Html(l10n.l('ticker.desc', `<p>Below counter is pushed by model change events from the ticker service.</p><p>Access is controlled by a toggle button only available when logged in as admin.<br>When public, anyone will get access to the model, but when private, you must be logged in as admin or guest to get access.</p><p>Used for testing model change events and access control, both on model reaccess events and token reaccess.</p>`), { tagName: 'p' })),
+					n.elem('div', [
+						n.text('Web resource: '),
+						n.elem('a', { attributes: {
+							href: this.module.api.getWebResourceUri('tickerService.ticker'),
+							target: '_blank'
+						}}, [
+							n.text(this.module.api.getWebResourceUri('tickerService.ticker'))
+						])
+					]),
 					n.elem('hr'),
 					n.elem('div', [
 						n.text('Count: '),
