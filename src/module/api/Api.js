@@ -15,15 +15,15 @@ class Api extends ResClient {
 				type: 'string',
 				default: `/ws`
 			},
-			webResourceUrl: {
+			webResourcePath: {
 				type: 'string',
-				default: `/api`
+				default: `/api/`
 			}
 		});
 		super(opt.hostUrl, { namespace, eventBus: app.eventBus });
 
 		this.app = app;
-		this.webResourceUrl = this._resolvewebResourcePath(opt.webResourceUrl);
+		this.webResourcePath = this._resolveWebResourcePath(opt.webResourcePath);
 	}
 
 	getWebResourceUri(rid) {
@@ -31,10 +31,10 @@ class Api extends ResClient {
 		let rname = idx >= 0 ? rid.substr(0, idx) : rid;
 		let query = idx >= 0 ? rid.substr(idx) : '';
 
-		return this.webResourceUrl + rname.replace(/\./g, '/') + query;
+		return this.webResourcePath + rname.replace(/\./g, '/') + query;
 	}
 
-	_resolvewebResourcePath(url) {
+	_resolveWebResourcePath(url) {
 		if (!url.match(/^http?:\/\//)) {
 			let a = document.createElement('a');
 			a.href = url;

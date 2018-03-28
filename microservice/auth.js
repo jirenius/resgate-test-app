@@ -171,7 +171,6 @@ nats.subscribe('auth.authService.basicAuth', (request, replyTo, subject) => {
 		}
 	}
 
-	console.log("Failed to log in");
 	nats.publish(replyTo, JSON.stringify({ error: { code: 'authService.wrongUsernamePassword', message: "Wrong username or password" }}));
 });
 
