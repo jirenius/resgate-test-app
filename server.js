@@ -1,5 +1,6 @@
 var path = require('path');
 var express = require('express');
+var fs = require("fs");
 var webpack = require('webpack');
 var webpackMiddleware = require('webpack-dev-middleware');
 var webpackConfig = require('./webpack.config.js');
@@ -31,10 +32,13 @@ app.get('*', function response(req, res) {
 });
 
 // Load all microservices
-var normalizedPath = require("path").join(__dirname, "microservice");
-require("fs").readdirSync(normalizedPath).forEach(function(file) {
-	console.info('Loading service ' + file);
-	require("./microservice/" + file);
+var normalizedPath = path.join(__dirname, "microservice");
+fs.readdirSync(normalizedPath).forEach(function(file) {
+	var filePath = path.join(normalizedPath, file);
+	if (fs.lstatSync(filePath).isFile()) {
+		console.info('Loading service ' + file);
+		require(filePath);
+	}
 });
 
 app.listen(port, '0.0.0.0', function onStart(err) {
@@ -43,5 +47,3 @@ app.listen(port, '0.0.0.0', function onStart(err) {
 	}
 	console.info('Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
 });
-
-

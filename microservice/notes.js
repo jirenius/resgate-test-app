@@ -1,5 +1,5 @@
 const NATS = require('nats');
-const QueryCollection = require('./QueryCollection.js');
+const QueryCollection = require('./class/QueryCollection.js');
 
 let nats = NATS.connect("nats://localhost:4222");
 

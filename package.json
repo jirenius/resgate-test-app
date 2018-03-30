@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node server.js",
-    "eslint": "eslint src/**/*.js"
+    "eslint": "eslint ./"
   },
   "dependencies": {
     "express": "^4.16.3",
