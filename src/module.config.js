@@ -1,6 +1,6 @@
 const config = {
 	api: {
-		hostUrl: 'ws://localhost:8080/ws',
+		hostUrl: 'ws://localhost:8080/',
 		webResourcePath: 'http://localhost:8080/api/'
 	},
 	eventLogger: {
