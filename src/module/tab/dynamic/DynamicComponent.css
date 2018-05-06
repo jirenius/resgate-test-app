@@ -1,0 +1,29 @@
+.module-dynamic--create,
+.module-dynamic--property {
+	max-width: 440px;
+	width: 100%;
+	display: flex;
+}
+
+.module-dynamic--property {
+	padding-bottom: 5px;
+}
+
+.module-dynamic--create > input {
+	flex: 1 1 0px;
+}
+
+.module-dynamic--create > button,
+.module-dynamic--property > button{
+	flex: 0 0 auto;
+	width: 64px;
+    margin-left: 5px;
+}
+
+.module-dynamic--property > span {
+	flex: 2 2 0px;
+}
+
+.module-dynamic--property > input {
+	flex: 3 3 0px;
+}

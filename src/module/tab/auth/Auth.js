@@ -42,7 +42,7 @@ class Auth {
 		this.module.layout.addTab({
 			id: 'auth',
 			name: l10n.l('auth.auth', `Authentication`),
-			sortOrder: 50,
+			sortOrder: 60,
 			componentFactory: () => new AuthComponent(this)
 		});
 	}
