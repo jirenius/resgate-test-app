@@ -28,6 +28,7 @@ class QueryCollection {
 
 		// Bind callbacks
 		this._unsubscribeEvent = this._unsubscribeEvent.bind(this);
+		this._modelResourceValue = this._modelResourceValue.bind(this);
 
 		this.eventId = 0;
 		this.events = null;
@@ -42,7 +43,7 @@ class QueryCollection {
 
 	getCollection(start, limit) {
 		if (start === undefined) {
-			return this.list.map(this.modelResourceName);
+			return this.list.map(this._modelResourceValue);
 		}
 
 		try {
@@ -54,7 +55,11 @@ class QueryCollection {
 
 		return this.list
 			.slice(start, limit ? start + limit : undefined)
-			.map(this.modelResourceName);
+			.map(this._modelResourceValue);
+	}
+
+	_modelResourceValue(m) {
+		return { rid: this.modelResourceName(m) };
 	}
 
 	getModel(resourceId) {
@@ -73,7 +78,7 @@ class QueryCollection {
 		this.map[resourceId] = model;
 
 		let subject = this._createQueryInbox('add', resourceId, idx);
-		this.nats.publish('event.' + this.resourceName + '.add', JSON.stringify({ rid: resourceId, idx }));
+		this.nats.publish('event.' + this.resourceName + '.add', JSON.stringify({ value: { rid: resourceId }, idx }));
 		this.nats.publish('event.' + this.resourceName + '.query', JSON.stringify({ subject }));
 	}
 
@@ -90,7 +95,7 @@ class QueryCollection {
 		delete this.map[resourceId];
 
 		let subject = this._createQueryInbox('remove', resourceId, idx);
-		this.nats.publish('event.' + this.resourceName + '.remove', JSON.stringify({ rid: resourceId, idx }));
+		this.nats.publish('event.' + this.resourceName + '.remove', JSON.stringify({ idx }));
 		this.nats.publish('event.' + this.resourceName + '.query', JSON.stringify({ subject }));
 		return model;
 	}
@@ -157,36 +162,57 @@ class QueryCollection {
 				return this.nats.publish(replyTo, NO_QUERY_EVENTS);
 			}
 
-			let offset = event.event === 'add' ? 1 : 0;
 			let events;
 			if (event.idx >= start) {
-				events = [{
-					event: event.event,
-					data: {
-						rid: event.resourceId,
-						idx: event.idx - start
-					}
-				}];
+				events = event.event === 'add'
+					? [{
+						event: 'add',
+						data: {
+							value: { rid: event.resourceId },
+							idx: event.idx - start
+						}
+					}]
+					: [{
+						event: 'remove',
+						data: {
+							idx: event.idx - start
+						}
+					}];
 			} else {
-				events = [{
-					event: event.event,
-					data: {
-						rid: this._getPastResourceIdAt(idx, start - offset),
-						idx: 0
-					}
-				}];
+				events = event.event === 'add'
+					? [{
+						event: 'add',
+						data: {
+							value: { rid: this._getPastResourceIdAt(idx, start - 1) },
+							idx: 0
+						}
+					}]
+					: [{
+						event: 'remove',
+						data: {
+							idx: 0
+						}
+					}];
 			}
 
 			if (q.limit) {
-				let resourceId = this._getPastResourceIdAt(idx, end - offset);
+				let resourceId = this._getPastResourceIdAt(idx, end - (event.event === 'add' ? 1 : 0));
 				if (resourceId !== null) {
-					events.push({
-						event: event.event === 'add' ? 'remove' : 'add',
-						data: {
-							rid: resourceId,
-							idx: q.limit - 1 + offset
+					events.push(event.event === 'add'
+						? {
+							event: 'remove',
+							data: {
+								idx: q.limit
+							}
 						}
-					});
+						: {
+							event: 'add',
+							data: {
+								value: { rid: resourceId },
+								idx: q.limit - 1
+							}
+						}
+					);
 				}
 			}
 
