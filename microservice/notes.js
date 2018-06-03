@@ -3,7 +3,6 @@ const QueryCollection = require('./class/QueryCollection.js');
 
 let nats = NATS.connect("nats://localhost:4222");
 
-
 let notes = new QueryCollection(nats, 'notesService.notes', 'notesService.note.', {
 	data: [
 		{ id: 10, message: "Ten" },
