@@ -19,7 +19,6 @@ nats.subscribe('access.dynamicService.model', (request, replyTo, subject) => {
 
 // Get listener
 nats.subscribe('get.dynamicService.model', (request, replyTo, subject) => {
-	console.log("get.dynamicService.model");
 	nats.publish(replyTo, JSON.stringify({ result: { model }}));
 });
 
@@ -49,7 +48,6 @@ nats.subscribe('call.dynamicService.model.set', (request, replyTo, subject) => {
 		// Delete deleted properties from model
 		Object.keys(model).forEach(key => model[key] === actionDelete && delete model[key]);
 
-		console.log("event.dynamicService.model.change - ", JSON.stringify(change));
 		nats.publish('event.dynamicService.model.change', JSON.stringify(change));
 	}
 	nats.publish(replyTo, JSON.stringify({ result: null }));
