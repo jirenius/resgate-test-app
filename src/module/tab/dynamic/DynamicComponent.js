@@ -29,7 +29,7 @@ class DynamicComponent {
 
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-dynamic' }, [
-				n.component(new Html(l10n.l('dynamic.editInstruction', `<p>Add new fields to the dynamic model, edit them, or delete them.</p><p>All properties and values are stored in one single model<p>Used for testing creation and deletion of model properties.</p>`), { tagName: 'div' })),
+				n.component(new Html(l10n.l('dynamic.editInstruction', `<p>Add, edit, or delete the fields of the dynamic model.</p><p>All properties and values are stored in one single model</p><p>Used for testing creation and deletion of model properties.</p>`), { tagName: 'div' })),
 				n.elem('div', [
 					n.text('Web resource: '),
 					n.elem('a', { attributes: {
