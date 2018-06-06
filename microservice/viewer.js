@@ -9,7 +9,8 @@ let models = {
 		primitives: { rid: 'viewerService.primitives' },
 		clickField: { rid: 'clickService.clickField' },
 		dynamic: { rid: 'dynamicService.model' },
-		note: { rid: 'notesService.note.10' }
+		note: { rid: 'notesService.note.10' },
+		cycle: { rid: 'viewerService.cyclic.a' }
 	},
 	"cyclic.a": {
 		refToB: { rid: 'viewerService.cyclic.b' },
