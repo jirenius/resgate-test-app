@@ -22,7 +22,7 @@ class ViewerComponent {
 	render(el) {
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-viewer' }, [
-				n.component(new Html(l10n.l('viewer.editInstruction', `<p>Enter a resource ID to view it together with all linked resources.</p><p>The viewer handles cyclic references.</p><p>Used for testing subscribing and unsubscribing to any sort of linked resource.</p>`), { tagName: 'div' })),
+				n.component(new Html(l10n.l('viewer.editInstruction', `<p>Enter a resource ID to view it together with all linked resources.</p><p>The viewer can handle all kinds of resources including cyclic and error references.</p><p>Used for testing subscribing and unsubscribing to any sort of linked resource.</p>`), { tagName: 'div' })),
 				n.elem('div', [
 					n.text('Web resource: '),
 					n.elem('a', { attributes: {
@@ -83,6 +83,7 @@ class ViewerComponent {
 		}
 
 		view.fade(new ComponentLoader(this.module.api.getResource(rid)
+			.catch(err => err)
 			.then(resource => new ViewerResourceComponent(resource))
 		));
 	}

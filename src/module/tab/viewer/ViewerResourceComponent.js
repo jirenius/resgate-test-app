@@ -1,3 +1,4 @@
+import { isResError } from 'resclient';
 import Elem from 'modapp-base-component/Elem';
 import Txt from 'modapp-base-component/Txt';
 import CollectionList from 'component/CollectionList';
@@ -9,10 +10,12 @@ class ViewerResourceComponent {
 	constructor(resource, path = []) {
 		this.resource = resource;
 
-		let rid = resource.getResourceId();
-		this.cyclic = path.indexOf(rid) >= 0;
-		this.path = path.slice();
-		this.path.push(rid);
+		if (typeof resource.getResourceId === 'function') {
+			let rid = resource.getResourceId();
+			this.cyclic = path.indexOf(rid) >= 0;
+			this.path = path.slice();
+			this.path.push(rid);
+		}
 
 		this.modelCollection = null;
 
@@ -32,24 +35,31 @@ class ViewerResourceComponent {
 		}
 
 		this.elem = c;
-		// new Elem(n =>
-		// 	n.elem('div', { className: 'module-viewer--resource' }, [
-		// 		n.component(new Txt(this.resource.getResourceId())),
-		// 		n.component(c)
-		// 	])
-		// );
 
 		return this.elem.render(el);
 	}
 
 	_isError() {
-		return !this.resource.on && this.resource.hasOwnProperty('message');
+		return isResError(this.resource);
 	}
 
 	_isCollection(r) {
 		return this.resource === null
 			? false
 			: typeof this.resource[Symbol.iterator] === 'function';
+	}
+
+	_errorComponent() {
+		return new Elem(n => n.elem('div', { className: 'module-viewer--error' }, [
+			n.component(new Txt(this.resource.getResourceId(), { className: 'module-viewer--resource' })),
+			n.component(new Txt(this.resource.message, { className: 'module-viewer--error-message' })),
+		]));
+	}
+
+	_cyclicComponent() {
+		return new Elem(n => n.elem('div', { className: 'module-viewer--cycle' }, [
+			n.component(new Txt(this.resource.getResourceId() + " (cycle)", { className: 'module-viewer--resource' })),
+		]));
 	}
 
 	_collectionComponent() {
@@ -82,7 +92,11 @@ class ViewerResourceComponent {
 
 	_createModelCollection() {
 		let data = [];
-		Object.keys(this.resource.toJSON()).forEach(id => data.push({ id }));
+		Object.keys(this.resource).forEach(id => {
+			if (this.resource.hasOwnProperty(id) && id.substr(0, 1) !== '_') {
+				data.push({ id });
+			}
+		});
 
 		return new Collection({
 			data,
