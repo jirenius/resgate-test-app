@@ -18,7 +18,7 @@ class Viewer {
 
 		this.model = new Model({
 			data: {
-				rid: 'complexService.collection'
+				rid: 'viewerService.collection'
 			}
 		});
 

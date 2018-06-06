@@ -1,0 +1,63 @@
+.module-viewer--view {
+	width: 100%;
+	display: flex;
+	max-width: 440px;
+}
+
+.module-viewer--view {
+	padding-bottom: 5px;
+}
+
+.module-viewer--view > input {
+	flex: 1 1 0px;
+}
+
+.module-viewer--view > button {
+	flex: 0 0 auto;
+	width: 64px;
+    margin-left: 5px;
+}
+
+.module-viewer--model {
+	padding: 4px 0;
+}
+
+.module-viewer--model > div {
+	border-left: 4px solid rgb(178, 178, 216);
+	padding-left: 8px;
+}
+
+.module-viewer--value > .head {
+	display: flex;
+	position: relative;
+}
+
+.module-viewer--value > .head > span {
+	display: inline;
+	padding-right: 10px;
+	color: #225;
+	font-weight: bold;
+}
+
+.module-viewer--value > .head > div {
+	display: inline;
+}
+
+.module-viewer--value > .body {
+	padding-left: 24px;
+}
+
+.module-viewer--resource {
+	font-size: smaller;
+	padding-bottom: 3px;
+	color: #888;
+}
+
+.module-viewer--boolean,
+.module-viewer--null {
+	font-style: italic;
+}
+
+.module-viewer--number {
+	color: #559;
+}

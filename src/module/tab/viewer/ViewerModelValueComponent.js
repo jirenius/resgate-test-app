@@ -18,9 +18,14 @@ class ModelValueComponent {
 
 	render(el) {
 		this.elem = new Elem(n =>
-			n.elem('div', { className: 'module-viewer--model-value' }, [
-				n.component(new Txt(this.prop)),
-				n.component('value', new Transition())
+			n.elem('div', { className: 'module-viewer--value' }, [
+				n.elem('div', { className: 'head' }, [
+					n.component(new Txt(this.prop)),
+					n.component('head', new Transition())
+				]),
+				n.elem('div', { className: 'body' }, [
+					n.component('body', new Transition())
+				])
 			])
 		);
 
@@ -58,15 +63,18 @@ class ModelValueComponent {
 		}
 
 		let v = this.model[this.prop];
-		let c;
+		let h, b = null;
 		if (typeof v === 'object' && v !== null) {
-			c = new ViewerResourceComponent(v, this.path);
+			h = null;
+			b = new ViewerResourceComponent(v, this.path);
 		} else {
 			let typ = v === null ? 'null' : typeof v;
-			c = new Txt(String(v), { className: 'module-viewer--' + typ });
+			h = new Txt(String(v), { className: 'module-viewer--' + typ });
+			b = null;
 		}
 
-		this.elem.getNode('value').fade(c);
+		this.elem.getNode('head').fade(h);
+		this.elem.getNode('body').fade(b);
 	}
 }
 
