@@ -32,6 +32,10 @@
 	position: relative;
 }
 
+.module-viewer--cycle {
+	padding-bottom: 3px;
+}
+
 .module-viewer--value > .head > span {
 	display: inline;
 	padding-right: 10px;
@@ -51,6 +55,13 @@
 	font-size: smaller;
 	padding-bottom: 3px;
 	color: #888;
+}
+
+.module-viewer--error-message {
+	display: block;
+	font-size: smaller;
+	padding-bottom: 3px;
+	color: #800;
 }
 
 .module-viewer--boolean,
