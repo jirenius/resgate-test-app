@@ -30,7 +30,14 @@ class ViewerResourceComponent {
 		} else {
 			c = this._modelComponent();
 		}
+
 		this.elem = c;
+		// new Elem(n =>
+		// 	n.elem('div', { className: 'module-viewer--resource' }, [
+		// 		n.component(new Txt(this.resource.getResourceId())),
+		// 		n.component(c)
+		// 	])
+		// );
 
 		return this.elem.render(el);
 	}
@@ -46,7 +53,8 @@ class ViewerResourceComponent {
 	}
 
 	_collectionComponent() {
-		return new Elem(n => n.elem('div', { className: 'model-viewer--model' }, [
+		return new Elem(n => n.elem('div', { className: 'module-viewer--collection' }, [
+			n.component(new Txt(this.resource.getResourceId(), { className: 'module-viewer--resource' })),
 			n.component(new CollectionList(this.resource, v => {
 				if (typeof v === 'object' && v !== null) {
 					return new ViewerResourceComponent(v, this.path);
@@ -64,8 +72,11 @@ class ViewerResourceComponent {
 		this.resource.on('change', cb);
 		this.onUnrender = () => this.resource.off('change', cb);
 
-		return new Elem(n => n.elem('div', { className: 'model-viewer--model' }, [
-			n.component(new CollectionList(collection, m => new ViewerModelValueComponent(m.id, this.resource, this.path)))
+		return new Elem(n => n.elem('div', { className: 'module-viewer--model' }, [
+			n.elem('div', [
+				n.component(new Txt(this.resource.getResourceId(), { className: 'module-viewer--resource' })),
+				n.component(new CollectionList(collection, m => new ViewerModelValueComponent(m.id, this.resource, this.path)))
+			])
 		]));
 	}
 
