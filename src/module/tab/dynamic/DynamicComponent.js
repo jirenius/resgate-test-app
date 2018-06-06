@@ -75,7 +75,11 @@ class DynamicComponent {
 
 	_createCollection() {
 		let data = [];
-		Object.keys(this.model.toJSON()).forEach(id => data.push({ id }));
+		Object.keys(this.model).forEach(id => {
+			if (this.model.hasOwnProperty(id) && id.substr(0, 1) !== '_') {
+				data.push({ id });
+			}
+		});
 
 		this.collection = new Collection({
 			data,

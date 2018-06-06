@@ -7,7 +7,9 @@ let models = {
 	"model": {
 		notes: { rid: 'notesService.notes?start=0&limit=5' },
 		primitives: { rid: 'viewerService.primitives' },
-		clickField: { rid: 'clickService.clickField' }
+		clickField: { rid: 'clickService.clickField' },
+		dynamic: { rid: 'dynamicService.model' },
+		note: { rid: 'notesService.note.10' }
 	},
 	"cyclic.a": {
 		refToB: { rid: 'viewerService.cyclic.b' },
@@ -21,7 +23,8 @@ let models = {
 let collections = {
 	"collection": [
 		{ rid: 'tickerService.ticker' },
-		{ rid: 'viewerService.model' }
+		{ rid: 'viewerService.model' },
+		{ rid: 'viewerService.unknown' }
 	],
 	"primitives": [
 		true,
