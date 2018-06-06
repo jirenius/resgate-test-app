@@ -26,10 +26,10 @@ class ViewerComponent {
 				n.elem('div', [
 					n.text('Web resource: '),
 					n.elem('a', { attributes: {
-						href: this.module.api.getWebResourceUri('complexService.collection'),
+						href: this.module.api.getWebResourceUri('viewerService.collection'),
 						target: '_blank'
 					}}, [
-						n.text(this.module.api.getWebResourceUri('complexService.collection'))
+						n.text(this.module.api.getWebResourceUri('viewerService.collection'))
 					])
 				]),
 				n.elem('hr'),
