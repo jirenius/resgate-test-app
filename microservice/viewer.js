@@ -59,3 +59,18 @@ nats.subscribe('get.viewerService.>', (request, replyTo, subject) => {
 });
 
 nats.publish('system.reset', JSON.stringify({ resources: [ 'viewerService.>' ] }));
+
+let changeNote = function() {
+	setTimeout(() => {
+		let note = models['model'].note;
+		let nextId = parseInt(note.rid.substr(('notesService.note.').length)) + 10;
+		if (nextId > 100) {
+			nextId = 10;
+		}
+		note.rid = 'notesService.note.' + nextId;
+		nats.publish('event.viewerService.model.change', JSON.stringify({ note }));
+		changeNote();
+	}, 5000);
+};
+
+changeNote();
