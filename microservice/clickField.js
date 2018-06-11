@@ -1,10 +1,11 @@
 const NATS = require('nats');
+let nats = NATS.connect("nats://localhost:4222");
+
+const errInvalidParams = JSON.stringify({ error: { code: 'system.invalidParams', message: "Invalid parameters" }});
 
 let clickField = {
 	clickCount: 0
 };
-
-let nats = NATS.connect("nats://localhost:4222");
 
 let validateParams = function(req) {
 	if (!req || typeof req !== 'object') {
@@ -35,7 +36,7 @@ nats.subscribe('get.clickService.clickField', (request, replyTo, subject) => {
 nats.subscribe('call.clickService.clickField.click', (rawRequest, replyTo, subject) => {
 	let request = JSON.parse(rawRequest);
 	if (!validateParams(request)) {
-		nats.publish(replyTo, JSON.stringify({ error: { code: 'clickService.invalidParams', message: "Invalid parameters" }}));
+		nats.publish(replyTo, errInvalidParams);
 		return;
 	}
 
