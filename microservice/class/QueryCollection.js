@@ -284,13 +284,24 @@ class QueryCollection {
 				this.nats.publish(replyTo, ERR_NOT_FOUND);
 			} else {
 				let collection = this.getCollection(q.start, q.limit);
-				this.nats.publish(replyTo, JSON.stringify({ result: { collection }}));
+				let query = this._normalizedQuery(q);
+				this.nats.publish(replyTo, JSON.stringify({ result: { collection, query }}));
 			}
 		} catch (ex) {
 			console.error("Error getting collection: ", ex.message);
 			this.nats.publish(replyTo, ERR_NOT_FOUND);
 			return;
 		}
+	}
+
+	_normalizedQuery(q) {
+		if (!q.start && !q.limit) {
+			return undefined;
+		}
+
+		let str = q.start ? 'start=' + q.start : '';
+		str += q.limit ? (str ? '&' : '') + 'limit=' + q.limit : '';
+		return str;
 	}
 
 	_parseQuery(query) {
