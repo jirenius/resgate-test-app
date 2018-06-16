@@ -42,7 +42,7 @@ nats.subscribe('call.tickerService.ticker.set', (request, replyTo, subject) => {
 	nats.publish(replyTo, JSON.stringify({ result: null }));
 });
 
-nats.publish('system.reset', JSON.stringify({ resources: [ 'tickerService.>' ] }));
+nats.publish('system.reset', JSON.stringify({ resources: [ 'tickerService.>' ], access: [ 'tickerService.>' ] }));
 
 let count = function() {
 	setTimeout(() => {

@@ -48,4 +48,4 @@ nats.subscribe('call.clickService.clickField.click', (rawRequest, replyTo, subje
 	nats.publish(replyTo, JSON.stringify({ result: null }));
 });
 
-nats.publish('system.reset', JSON.stringify({ resources: [ 'clickService.>' ] }));
+nats.publish('system.reset', JSON.stringify({ resources: [ 'clickService.>' ], access: [ 'clickService.>' ] }));
