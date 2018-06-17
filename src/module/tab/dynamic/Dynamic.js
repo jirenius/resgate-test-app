@@ -19,7 +19,7 @@ class Dynamic {
 			id: 'dynamic',
 			name: l10n.l('dynamic.dynamic', `Dynamic`),
 			sortOrder: 50,
-			componentFactory: () => this.module.api.getResource('dynamicService.model').then(model => new DynamicComponent(this.module, model))
+			componentFactory: () => this.module.api.get('dynamicService.model').then(model => new DynamicComponent(this.module, model))
 		});
 	}
 

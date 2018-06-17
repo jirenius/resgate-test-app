@@ -110,7 +110,7 @@ class NotesComponent {
 			? `notesService.notes?start=${encodeURIComponent(this.model.start)}&limit=${encodeURIComponent(this.model.limit)}`
 			: 'notesService.notes';
 
-		this.elem.getNode('main').fade(new ComponentLoader(this.module.api.getResource(rid).then(notes => {
+		this.elem.getNode('main').fade(new ComponentLoader(this.module.api.get(rid).then(notes => {
 			return new CollectionList(notes, model => new Elem(n =>
 				n.elem('div', { className: 'module-notes--note' }, [
 					n.elem('div', { className: 'module-notes--note-container' }, [
