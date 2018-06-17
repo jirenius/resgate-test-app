@@ -82,7 +82,7 @@ class ViewerComponent {
 			return;
 		}
 
-		view.fade(new ComponentLoader(this.module.api.getResource(rid)
+		view.fade(new ComponentLoader(this.module.api.get(rid)
 			.catch(err => err)
 			.then(resource => new ViewerResourceComponent(resource))
 		));

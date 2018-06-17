@@ -53,7 +53,7 @@ class Auth {
 
 	login(username, password) {
 		if (!this.apiUser) {
-			return this.module.api.getResource('authService.user.{cid}').then(apiUser => {
+			return this.module.api.get('authService.user.{cid}').then(apiUser => {
 				this.apiUser = apiUser;
 				this.apiUser.on('change', this._onUserChange);
 
@@ -81,7 +81,7 @@ class Auth {
 	}
 
 	logoutGuests() {
-		return this.module.api.callModel('authService', 'logoutGuests');
+		return this.module.api.call('authService', 'logoutGuests');
 	}
 
 	_onUserChange() {
