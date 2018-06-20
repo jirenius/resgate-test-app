@@ -67,10 +67,14 @@ class QueryCollection {
 	}
 
 	add(model, idx) {
-		idx = Number(idx);
-		if (Number.isNaN(idx) || idx < 0 || idx > this.list.length) {
-			console.error("Index out of bounds - ", model, idx);
-			return;
+		if (idx === undefined) {
+			idx = this.list.length;
+		} else {
+			idx = Number(idx);
+			if (Number.isNaN(idx) || idx < 0 || idx > this.list.length) {
+				console.error("Index out of bounds - ", model, idx);
+				return;
+			}
 		}
 
 		this.list.splice(idx, 0, model);

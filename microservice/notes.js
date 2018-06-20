@@ -5,22 +5,34 @@ let nats = NATS.connect("nats://localhost:4222");
 
 let notes = new QueryCollection(nats, 'notesService.notes', 'notesService.note.', {
 	data: [
-		{ id: 10, message: "Ten" },
-		{ id: 20, message: "Twenty" },
-		{ id: 30, message: "Thirty" },
-		{ id: 40, message: "Fourty" },
-		{ id: 50, message: "Fifty" },
-		{ id: 60, message: "Sixty" },
-		{ id: 70, message: "Seventy" },
-		{ id: 80, message: "Eighty" },
-		{ id: 90, message: "Ninety" },
-		{ id: 100, message: "Hundred" }
+		{ id: 1, message: "One" },
+		{ id: 2, message: "Two" },
+		{ id: 3, message: "Three" },
+		{ id: 4, message: "Four" },
+		{ id: 5, message: "Five" },
+		{ id: 6, message: "Six" },
+		{ id: 7, message: "Seven" },
+		{ id: 8, message: "Eight" },
+		{ id: 9, message: "Nine" },
+		{ id: 10, message: "Ten" }
 	]
 });
 
+let incrementalId = 10;
+
 // Access listener
 nats.subscribe('access.notesService.>', (request, replyTo, subject) => {
-	nats.publish(replyTo, JSON.stringify({ result: { get: true }}));
+	nats.publish(replyTo, JSON.stringify({ result: { get: true, call: '*' }}));
+});
+
+// New listener
+nats.subscribe('call.notesService.notes.new', (request, replyTo, subject) => {
+	let req = JSON.parse(request);
+	let p = req.params || {};
+	let note = { id: ++incrementalId, message: p.message || "" };
+
+	notes.add(note);
+	nats.publish(replyTo, JSON.stringify({ result: { rid: 'notesService.note.' + note.id }}));
 });
 
 nats.publish('system.reset', JSON.stringify({ resources: [ 'notesService.>' ] }));
