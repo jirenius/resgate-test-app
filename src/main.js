@@ -1,4 +1,4 @@
-import { AppExt } from 'modapp/ext';
+import { AppExt } from 'modapp';
 import modules from './modules';
 import config from 'module.config';
 
