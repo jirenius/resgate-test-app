@@ -9,7 +9,7 @@ let models = {
 		primitives: { rid: 'viewerService.primitives' },
 		clickField: { rid: 'clickService.clickField' },
 		dynamic: { rid: 'dynamicService.model' },
-		note: { rid: 'notesService.note.10' },
+		note: { rid: 'notesService.note.1' },
 		cycle: { rid: 'viewerService.cyclic.a' }
 	},
 	"cyclic.a": {
@@ -63,9 +63,9 @@ nats.publish('system.reset', JSON.stringify({ resources: [ 'viewerService.>' ] }
 let changeNote = function() {
 	setTimeout(() => {
 		let note = models['model'].note;
-		let nextId = parseInt(note.rid.substr(('notesService.note.').length)) + 10;
-		if (nextId > 100) {
-			nextId = 10;
+		let nextId = parseInt(note.rid.substr(('notesService.note.').length)) + 1;
+		if (nextId > 10) {
+			nextId = 1;
 		}
 		note.rid = 'notesService.note.' + nextId;
 		nats.publish('event.viewerService.model.change', JSON.stringify({ note }));

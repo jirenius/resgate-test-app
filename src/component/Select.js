@@ -1,5 +1,4 @@
-import * as elem from 'modapp-utils/elem';
-import * as obj from 'modapp-utils/obj';
+import { elem, obj } from 'modapp-utils';
 import l10n from 'modapp-l10n';
 
 import './Select.css';

@@ -1,5 +1,4 @@
-import * as elem from 'modapp-utils/elem';
-import * as anim from 'modapp-utils/anim';
+import { anim, elem } from 'modapp-utils';
 import './ComponentList.css';
 
 /**
