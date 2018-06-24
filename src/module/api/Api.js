@@ -1,5 +1,5 @@
 import ResClient from 'resclient';
-import * as obj from 'modapp-utils/obj';
+import { obj } from 'modapp-utils';
 
 const namespace = 'module.api';
 

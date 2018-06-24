@@ -1,6 +1,4 @@
-import * as anim from 'modapp-utils/anim';
-import * as elem from 'modapp-utils/elem';
-import * as obj from 'modapp-utils/obj';
+import { anim, elem, obj } from 'modapp-utils';
 import './CollectionList.css';
 
 /**
