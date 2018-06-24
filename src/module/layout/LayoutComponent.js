@@ -1,12 +1,9 @@
-import ModelComponent from 'modapp-resource-component/ModelComponent';
+import { ModelComponent, ModelTxt } from 'modapp-resource-component/ModelComponent';
+import { Elem, Transition, Txt } from 'modapp-base-component';
+import { Model } from 'modapp-resource';
+import l10n from 'modapp-l10n';
 import CollectionList from 'component/CollectionList';
 import ComponentLoader from 'component/ComponentLoader';
-import Transition from 'component/Transition';
-import Elem from 'modapp-base-component/Elem';
-import ModelTxt from 'modapp-resource-component/ModelTxt';
-import Txt from 'modapp-base-component/Txt';
-import Model from 'modapp-resource/Model';
-import l10n from 'modapp-l10n';
 import './Layout.css';
 
 class LayoutComponent {

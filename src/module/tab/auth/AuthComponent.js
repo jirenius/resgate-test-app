@@ -1,12 +1,7 @@
-import Transition from 'component/Transition';
-import ModelComponent from 'modapp-resource-component/ModelComponent';
-import ModelTxt from 'modapp-resource-component/ModelTxt';
-import Txt from 'modapp-base-component/Txt';
-import Html from 'modapp-base-component/Html';
-import Elem from 'modapp-base-component/Elem';
-import Input from 'component/Input';
-import Button from 'modapp-base-component/Button';
+import { ModelComponent, ModelTxt } from 'modapp-resource-component';
+import { Button, Elem, Html, Transition, Txt } from 'modapp-base-component';
 import l10n from 'modapp-l10n';
+import Input from 'component/Input';
 import './AuthComponent.css';
 
 class AuthComponent {

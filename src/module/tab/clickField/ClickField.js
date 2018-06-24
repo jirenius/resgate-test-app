@@ -1,5 +1,5 @@
-import ClickFieldComponent from './ClickFieldComponent';
 import l10n from 'modapp-l10n';
+import ClickFieldComponent from './ClickFieldComponent';
 
 /**
  * ClickField adds the click field tab to the layout module

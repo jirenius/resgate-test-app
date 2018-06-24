@@ -1,9 +1,5 @@
-import ModelTxt from 'modapp-resource-component/ModelTxt';
-import ModelComponent from 'modapp-resource-component/ModelComponent';
-import Transition from 'component/Transition';
-import Html from 'modapp-base-component/Html';
-import Elem from 'modapp-base-component/Elem';
-import Button from 'modapp-base-component/Button';
+import { ModelComponent, ModelTxt } from 'modapp-resource-component';
+import { Button, Elem, Html, Transition } from 'modapp-base-component';
 import l10n from 'modapp-l10n';
 
 /**
