@@ -5,14 +5,14 @@
   },
   "dependencies": {
     "express": "^4.16.3",
-    "modapp": "^2.2.0",
-    "modapp-base-component": "^1.1.0",
-    "modapp-l10n": "^1.1.0",
-    "modapp-resource": "^1.1.0",
-    "modapp-resource-component": "^1.1.0",
-    "modapp-utils": "^1.1.0",
-    "nats": "^0.8.4",
-    "resclient": "^1.1.0"
+    "modapp": "^2.3.2",
+    "modapp-base-component": "^1.2.1",
+    "modapp-l10n": "^1.2.2",
+    "modapp-resource": "^1.2.2",
+    "modapp-resource-component": "^1.2.1",
+    "modapp-utils": "^1.2.1",
+    "nats": "^1.0.0",
+    "resclient": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

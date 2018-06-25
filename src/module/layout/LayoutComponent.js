@@ -1,4 +1,4 @@
-import { ModelComponent, ModelTxt } from 'modapp-resource-component/ModelComponent';
+import { ModelComponent, ModelTxt } from 'modapp-resource-component';
 import { Elem, Transition, Txt } from 'modapp-base-component';
 import { Model } from 'modapp-resource';
 import l10n from 'modapp-l10n';
