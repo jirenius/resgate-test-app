@@ -1,6 +1,5 @@
-import Model from 'modapp-resource/Model';
-import Elem from 'modapp-base-component/Elem';
-import Html from 'modapp-base-component/Html';
+import { Elem, Html } from 'modapp-base-component';
+import { Model } from 'modapp-resource';
 import l10n from 'modapp-l10n';
 import NotesComponent from './NotesComponent';
 import './Notes.css';

@@ -1,6 +1,5 @@
-import Html from 'modapp-base-component/Html';
-import Elem from 'modapp-base-component/Elem';
-import ModelTxt from 'modapp-resource-component/ModelTxt';
+import { Elem, Html } from 'modapp-base-component';
+import { ModelTxt } from 'modapp-resource-component';
 import l10n from 'modapp-l10n';
 import './ClickFieldComponent.css';
 

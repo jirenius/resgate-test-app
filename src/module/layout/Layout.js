@@ -1,4 +1,4 @@
-import Collection, { sortOrderCompare } from 'modapp-resource/Collection';
+import { Collection, sortOrderCompare } from 'modapp-resource';
 import LayoutComponent from './LayoutComponent';
 
 /**

@@ -1,7 +1,5 @@
-import Elem from 'modapp-base-component/Elem';
-import Txt from 'modapp-base-component/Txt';
+import { Elem, Transition, Txt } from 'modapp-base-component';
 import ViewerResourceComponent from './ViewerResourceComponent';
-import Transition from 'modapp-base-component/Transition';
 
 class ModelValueComponent {
 

@@ -1,9 +1,7 @@
-import Elem from 'modapp-base-component/Elem';
-import Input from 'component/Input';
-import Button from 'modapp-base-component/Button';
-import Txt from 'modapp-base-component/Txt';
-import ModelComponent from 'modapp-resource-component/ModelComponent';
+import { Button, Elem, Txt } from 'modapp-base-component';
+import { ModelComponent } from 'modapp-resource-component';
 import l10n from 'modapp-l10n';
+import Input from 'component/Input';
 
 class DynamicPropertyComponent {
 

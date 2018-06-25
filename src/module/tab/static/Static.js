@@ -1,5 +1,4 @@
-import Elem from 'modapp-base-component/Elem';
-import Html from 'modapp-base-component/Html';
+import { Elem, Html } from 'modapp-base-component';
 import l10n from 'modapp-l10n';
 
 /**

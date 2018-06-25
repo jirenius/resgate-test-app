@@ -1,6 +1,6 @@
-import Model from 'modapp-resource/Model';
-import AuthComponent from './AuthComponent';
+import { Model } from 'modapp-resource';
 import l10n from 'modapp-l10n';
+import AuthComponent from './AuthComponent';
 
 const EXPIRE_DURATION = 2 * 60 * 1000; // Token expires after 2 min. Should be renewed after half.
 

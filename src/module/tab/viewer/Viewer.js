@@ -1,6 +1,6 @@
+import { Model } from 'modapp-resource';
 import l10n from 'modapp-l10n';
 import ViewerComponent from './ViewerComponent';
-import Model from 'modapp-resource/Model';
 
 /**
  * Viewer adds the viewer tab to the layout module

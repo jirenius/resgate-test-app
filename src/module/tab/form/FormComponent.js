@@ -1,12 +1,8 @@
-import Txt from 'modapp-base-component/Txt';
-import Html from 'modapp-base-component/Html';
-import Elem from 'modapp-base-component/Elem';
-import Input from 'component/Input';
-import Button from 'modapp-base-component/Button';
-import Checkbox from 'modapp-base-component/Checkbox';
-import ModelComponent from 'modapp-resource-component/ModelComponent';
-import ModifyModel from 'modapp-resource/ModifyModel';
+import { Button, Checkbox, Elem, Html, Txt } from 'modapp-base-component';
+import { ModelComponent } from 'modapp-resource-component';
+import { ModifyModel } from 'modapp-resource';
 import l10n from 'modapp-l10n';
+import Input from 'component/Input';
 import './FormComponent.css';
 
 class FormComponent {

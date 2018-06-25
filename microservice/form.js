@@ -1,4 +1,4 @@
-const obj = require('modapp-utils/obj');
+const obj = require('modapp-utils').obj;
 const NATS = require('nats');
 
 let OBJ_DEF = {

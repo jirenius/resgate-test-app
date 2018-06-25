@@ -1,12 +1,8 @@
-import CollectionList from 'component/CollectionList';
-import ModelTxt from 'modapp-resource-component/ModelTxt';
-import Elem from 'modapp-base-component/Elem';
-import Txt from 'modapp-base-component/Txt';
-import Transition from 'modapp-base-component/Transition';
-import ModelRadio, { generateName } from 'modapp-resource-component/ModelRadio';
-import ModelInput from 'modapp-resource-component/ModelInput';
-import ComponentLoader from 'component/ComponentLoader';
+import { Elem, Transition, Txt } from 'modapp-base-component';
+import { ModelRadio, ModelInput, ModelTxt, generateName } from 'modapp-resource-component';
 import l10n from 'modapp-l10n';
+import CollectionList from 'component/CollectionList';
+import ComponentLoader from 'component/ComponentLoader';
 
 const STATE_NONE = 'none';
 const STATE_ALL = 'all';

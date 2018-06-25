@@ -1,10 +1,7 @@
-import Html from 'modapp-base-component/Html';
-import Elem from 'modapp-base-component/Elem';
-import Input from 'component/Input';
-import Button from 'modapp-base-component/Button';
-import ModelComponent from 'modapp-resource-component/ModelComponent';
-import Transition from 'modapp-base-component/Transition';
+import { Button, Elem, Html, Transition } from 'modapp-base-component';
+import { ModelComponent } from 'modapp-resource-component';
 import l10n from 'modapp-l10n';
+import Input from 'component/Input';
 import ComponentLoader from 'component/ComponentLoader';
 import ViewerResourceComponent from './ViewerResourceComponent';
 import './ViewerComponent.css';
