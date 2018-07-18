@@ -1,8 +1,7 @@
-import { ModelComponent, ModelTxt } from 'modapp-resource-component';
+import { ModelComponent, ModelTxt, CollectionList } from 'modapp-resource-component';
 import { Elem, Transition, Txt } from 'modapp-base-component';
 import { Model } from 'modapp-resource';
 import l10n from 'modapp-l10n';
-import CollectionList from 'component/CollectionList';
 import ComponentLoader from 'component/ComponentLoader';
 import './Layout.css';
 

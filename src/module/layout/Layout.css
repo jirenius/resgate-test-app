@@ -34,25 +34,25 @@ body, html {
 	overflow: hidden;
 }
 
-.module-layout--tabs > li {
+.module-layout--tabs > div {
 	display: inline-block;
 }
 
-.module-layout--tabs > li > span {
+.module-layout--tabs > div > span {
 	display: inline-block;
 	background-color: inherit;
 	cursor: pointer;
 	padding: 14px 24px;
-	transition: 0.3s;
+	transition: color 0.3s ease, background-color 0.3s ease;
 	min-width: 96px;
 	text-align: center;
 }
 
-.module-layout--tabs > li > span:hover {
+.module-layout--tabs > div > span:hover {
 	background-color: grey;
 }
 
-.module-layout--tabs > li > span.active {
+.module-layout--tabs > div > span.active {
 	background: #f0f0f0;
 	color: #a06420
 }

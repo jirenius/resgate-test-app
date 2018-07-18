@@ -1,8 +1,7 @@
 import { Button, Elem, Html, Txt } from 'modapp-base-component';
-import { ModelComponent } from 'modapp-resource-component';
+import { ModelComponent, CollectionList } from 'modapp-resource-component';
 import { Collection, Model } from 'modapp-resource';
 import l10n from 'modapp-l10n';
-import CollectionList from 'component/CollectionList';
 import Input from 'component/Input';
 import DynamicPropertyComponent from './DynamicPropertyComponent';
 import './DynamicComponent.css';

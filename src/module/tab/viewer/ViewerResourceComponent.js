@@ -1,7 +1,7 @@
 import { isResError } from 'resclient';
 import { Elem, Txt } from 'modapp-base-component';
+import { CollectionList } from 'modapp-resource-component';
 import { Collection } from 'modapp-resource';
-import CollectionList from 'component/CollectionList';
 import ViewerModelValueComponent from './ViewerModelValueComponent';
 
 class ViewerResourceComponent {

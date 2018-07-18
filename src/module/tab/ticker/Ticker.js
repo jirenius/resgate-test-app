@@ -1,6 +1,8 @@
 import { ModelComponent, ModelTxt } from 'modapp-resource-component';
 import { Button, Elem, Html, Transition } from 'modapp-base-component';
 import l10n from 'modapp-l10n';
+import ComponentLoader from 'component/ComponentLoader';
+import ErrorComponent from 'component/ErrorComponent';
 
 /**
  * Ticker adds the ticker tab to the layout module
@@ -20,7 +22,7 @@ class Ticker {
 			id: 'ticker',
 			name: l10n.l('ticker.ticker', `Ticker`),
 			sortOrder: 20,
-			componentFactory: () => this.module.api.get('tickerService.ticker').then(model => new Elem(n =>
+			componentFactory: () => new Elem(n =>
 				n.elem('div', { className: 'model-ticker' }, [
 					n.component(new Html(l10n.l('ticker.desc', `<p>Below counter is pushed by model change events from the ticker service.</p><p>Access is controlled by a toggle button only available when logged in as admin.<br>When public, anyone will get access to the model, but when private, you must be logged in as admin or guest to get access.</p><p>Used for testing model change events and access control, both on model reaccess events and token reaccess.</p>`), { tagName: 'p' })),
 					n.elem('div', [
@@ -33,30 +35,36 @@ class Ticker {
 						])
 					]),
 					n.elem('hr'),
-					n.elem('div', [
-						n.text('Count: '),
-						n.component(new ModelTxt(model, m => String(m.count)))
-					]),
-					n.elem('div', [
-						n.text('Access: '),
-						n.component(new ModelTxt(model, m => (m.accessible
-							? `Public`
-							: `Private`
-						)))
-					]),
-					// Show Toggle ticker access button for admins
-					n.component(new ModelComponent(this.module.auth.getUser(), new Transition(), (m, c, change) => {
-						if (change && !change.hasOwnProperty('role')) {
-							return;
-						}
+					n.component(new ComponentLoader(this.module.api.get('tickerService.ticker').then(model =>
+						new Elem(n =>
+							n.elem('div', [
+								n.elem('div', [
+									n.text('Count: '),
+									n.component(new ModelTxt(model, m => String(m.count)))
+								]),
+								n.elem('div', [
+									n.text('Access: '),
+									n.component(new ModelTxt(model, m => (m.accessible
+										? `Public`
+										: `Private`
+									)))
+								]),
+								// Show Toggle ticker access button for admins
+								n.component(new ModelComponent(this.module.auth.getUser(), new Transition(), (m, c, change) => {
+									if (change && !change.hasOwnProperty('role')) {
+										return;
+									}
 
-						c.fade(m.role === 'admin'
-							? new Button(l10n.l('ticker.toggleTickerAccess', `Toggle ticker access`), () => this._toggleTickerAccess(model))
-							: null
-						);
-					}))
+									c.fade(m.role === 'admin'
+										? new Button(l10n.l('ticker.toggleTickerAccess', `Toggle ticker access`), () => this._toggleTickerAccess(model))
+										: null
+									);
+								}))
+							])
+						)
+					).catch(err => new ErrorComponent(err))))
 				])
-			))
+			)
 		});
 	}
 
