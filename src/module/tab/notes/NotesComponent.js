@@ -1,7 +1,6 @@
 import { Elem, Transition, Txt } from 'modapp-base-component';
-import { ModelRadio, ModelInput, ModelTxt, generateName } from 'modapp-resource-component';
+import { CollectionList, ModelRadio, ModelInput, ModelTxt, generateName } from 'modapp-resource-component';
 import l10n from 'modapp-l10n';
-import CollectionList from 'component/CollectionList';
 import ComponentLoader from 'component/ComponentLoader';
 
 const STATE_NONE = 'none';
