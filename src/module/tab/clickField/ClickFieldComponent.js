@@ -19,7 +19,7 @@ class ClickFieldComponent {
 	render(el) {
 		this.elem = new Elem(n =>
 			n.elem('div', { className: 'module-clickField' }, [
-				n.component(new Html(l10n.l('clickField.desc', `<p>See where others click. And if you are logged in, click anywhere to send an event yourself.</p><p>Used for testing custom events, call access, and <em>system.reset</em> on the counter.</p>`))),
+				n.component(new Html(l10n.l('clickField.desc', `<p>See where others click. And if you are logged in, click anywhere to send an event yourself. If you are not logged in, a click should result in an <em>Access denied</em> error in the console.</p><p>Used for testing custom events, call access, and <em>system.reset</em> on the counter.</p>`))),
 				n.elem('div', [
 					n.text('Web resource: '),
 					n.elem('a', { attributes: {
