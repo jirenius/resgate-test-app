@@ -17,7 +17,7 @@ class Select {
 	 * @param {boolean} [opt.disabled] Optional disabled flag. Defaults to false.
 	 * @param {object} [opt.attributes] Optional attributes key/value object.
 	 * @param {function} [opt.onChange] Optional callback on change.
-	 * @param {function} [opt.nameAttribute] Optional nameAttribute callback. Will recieve the item and return the name string. Defaults to the item.name property.
+	 * @param {function} [opt.nameAttribute] Optional nameAttribute callback. Will receive the item and return the name string. Defaults to the item.name property.
 	 * @param {function} [opt.valueAttribute] Option valueAttribute callback. Will receive the item and return the value string. Defaults to the item.value property.
 	 */
 	constructor(options, opt) {

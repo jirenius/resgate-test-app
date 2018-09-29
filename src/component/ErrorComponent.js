@@ -18,7 +18,7 @@ class ErrorComponent {
 
 	render(el) {
 		this.elem = new Elem(n => n.elem('div', { className: 'comp-error' }, [
-			n.component(new Txt(l10n.l('comp.error.anErrorOccured', `An error occurred`), { tagName: 'h3' })),
+			n.component(new Txt(l10n.l('comp.error.anErrorOccurred', `An error occurred`), { tagName: 'h3' })),
 			n.component(new Txt(this._getMessage()), { tagName: 'p' })
 		]));
 		return this.elem.render(el);
