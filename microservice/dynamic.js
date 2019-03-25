@@ -48,7 +48,7 @@ nats.subscribe('call.dynamicService.model.set', (request, replyTo, subject) => {
 		// Delete deleted properties from model
 		Object.keys(model).forEach(key => model[key] === actionDelete && delete model[key]);
 
-		nats.publish('event.dynamicService.model.change', JSON.stringify(change));
+		nats.publish('event.dynamicService.model.change', JSON.stringify({ values: change }));
 	}
 	nats.publish(replyTo, JSON.stringify({ result: null }));
 });

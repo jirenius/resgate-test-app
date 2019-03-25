@@ -247,7 +247,9 @@ let sendLoginReply = function(replyTo, session) {
 	nats.publish('conn.' + cid + '.token', JSON.stringify({ token: { sid, userId: user.id, role: user.role }}));
 	// Update the conn user model unless it is a reissue
 	if (!reissue) {
-		nats.publish('event.authService.user.' + cid + '.change', JSON.stringify({ id: user.id, name: user.name, role: user.role }));
+		nats.publish('event.authService.user.' + cid + '.change', JSON.stringify({
+			values: { id: user.id, name: user.name, role: user.role }
+		}));
 	}
 	// Respond with the token key
 	nats.publish(replyTo, JSON.stringify({ result: { tokenKey }}));
@@ -260,7 +262,9 @@ let disposeSession = function(session) {
 	let token = tokens[tokens.length - 1];
 
 	// Clear the conn user model
-	nats.publish('event.authService.user.' + cid + '.change', JSON.stringify({ id: null, name: null, role: null }));
+	nats.publish('event.authService.user.' + cid + '.change', JSON.stringify({
+		values: { id: null, name: null, role: null }
+	}));
 	// Remove token from the last connection
 	nats.publish('conn.' + cid + '.token', JSON.stringify({ token: null }));
 

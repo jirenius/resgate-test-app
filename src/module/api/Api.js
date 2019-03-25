@@ -5,7 +5,7 @@ const namespace = 'module.api';
 
 /**
  * Api module connects to the backend api and provides low level
- * methods for service modules to send and recieve data.
+ * methods for service modules to send and receive data.
  */
 class Api extends ResClient {
 
