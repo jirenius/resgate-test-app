@@ -68,7 +68,7 @@ let changeNote = function() {
 			nextId = 1;
 		}
 		note.rid = 'notesService.note.' + nextId;
-		nats.publish('event.viewerService.model.change', JSON.stringify({ note }));
+		nats.publish('event.viewerService.model.change', JSON.stringify({ values: { note }}));
 		changeNote();
 	}, 5000);
 };
