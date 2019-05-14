@@ -5,7 +5,7 @@
 
 ---
 
-RES protocol test application used to test and develop [Resgate](https://github.com/jirenius/resgate).
+RES protocol test application used to test and develop [Resgate](https://github.com/resgateio/resgate).
 
 Visit [Resgate.io](https://resgate.io) for more information.
 
@@ -36,7 +36,7 @@ Each service, found in `/microservice/`, has a matching client module found in `
 
 Make sure you have:
 * [installed NATS server](https://nats.io/download/nats-io/gnatsd/) and have it running
-* [installed Resgate](https://github.com/jirenius/resgate) and have it running
+* [installed Resgate](https://github.com/resgateio/resgate) and have it running
 * [installed node.js](https://nodejs.org/en/download/)
 
 Download and run resgate-test-app:

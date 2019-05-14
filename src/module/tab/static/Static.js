@@ -22,7 +22,7 @@ class Static {
 			sortOrder: 10,
 			componentFactory: () => new Elem(n =>
 				n.elem('div', { className: 'module-static--tab' }, [
-					n.component(new Html(l10n.l('static.description', `<p>The <a href="https://github.com/jirenius/resgate-test-app">Resgate Test App</a> is used to test and develop <a href="https://github.com/jirenius/resgate">Resgate</a>.</p><p>Each tab is used to try out different concept of the RES protocol. This tab only contains static text.</p><p>Since this tab doesn't subscribe to any resources, it can be used to see how the client unsubscribes to resources previously subscribed to in other tabs.</p>`), { tagName: 'div' })),
+					n.component(new Html(l10n.l('static.description', `<p>The <a href="https://github.com/jirenius/resgate-test-app">Resgate Test App</a> is used to test and develop <a href="https://github.com/resgateio/resgate">Resgate</a>.</p><p>Each tab is used to try out different concept of the RES protocol. This tab only contains static text.</p><p>Since this tab doesn't subscribe to any resources, it can be used to see how the client unsubscribes to resources previously subscribed to in other tabs.</p>`), { tagName: 'div' })),
 					n.elem('hr')
 				])
 			)
