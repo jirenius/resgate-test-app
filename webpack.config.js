@@ -24,6 +24,7 @@ if (fs.existsSync(aliasPath)) {
 }
 
 module.exports = {
+	mode: 'development',
 	devtool: 'eval-source-map',
 	entry: {
 		app: path.join(__dirname, 'src/main.js')
@@ -54,43 +55,41 @@ module.exports = {
 		})
 	],
 	module: {
-		loaders: [
+		rules: [
 			{
-				test: /\.js$/,
+				test: /\.mjs$/,
+				include: /node_modules/,
+				type: 'javascript/auto'
+			},
+			{
+				test: /\.(js)$/,
 				include: includePaths,
-				loader: 'babel-loader',
-				query: {
-					presets: [
-						[ 'env', {
-							targets: {
-								chrome: "61"
-							}
-						}]
-					]
+				enforce: 'pre',
+				loader: 'eslint-loader',
+				options: {
+					emitWarning: true
 				}
 			},
 			{
-				test: /\.js$/,
-				include: includePaths,
-				loader: 'eslint-loader'
+				test: /\.(js)$/,
+				exclude: /node_modules/,
+				use: 'babel-loader'
 			},
 			{
-				test: /\.(css)$/,
-				use: [
-					{
-						loader: 'style-loader',
-					},
-					{
-						loader: 'css-loader',
-						options: {
-							sourceMap: true
-						}
+				test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+				use: {
+					loader: 'file-loader',
+					options: {
+						name: '[path][name].[ext]'
 					}
-				]
+				}
 			},
 			{
-				test: /\.(otf|eot|svg|ttf|woff)/,
-				loader: 'url-loader?limit=8192'
+				test: /\.(sa|sc|c)ss$/,
+				use: [
+					'style-loader',
+					'css-loader?sourceMap=true'
+				]
 			}
 		]
 	}
